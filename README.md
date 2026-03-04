@@ -28,3 +28,7 @@
 - X-Content-Type-Options
 - X-Frame-Options
 - X-XSS-Protection
+## 今後の改善案
+- PCのファイル内での診察
+- より高度で複雑な評価方法の実装
+- ヘッダー以外の要素も用いた診察
