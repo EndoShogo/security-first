@@ -11,9 +11,9 @@ def run_web_ui():
         print("\n" + "="*50)
         print("Web UIを起動します。")
         print("ブラウザで以下のURLを開いてください:")
-        print("http://127.0.0.1:5000")
+        print("http://127.0.0.1:5001")
         print("="*50 + "\n")
-        flask_app.run(host='127.0.0.1', port=5000, debug=False)
+        flask_app.run(host='127.0.0.1', port=5001, debug=False)
     except ImportError:
         print("エラー: Flaskがインストールされていないか、app.pyが見つかりません。")
         print("pip install Flask を実行してください。")

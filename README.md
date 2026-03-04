@@ -1,6 +1,5 @@
-# Security-First プロジェクト ガイドライン
-
-このプロジェクトは、Webサイトのセキュリティ健全性を検証するための基本的な診断ツールです。主に一般的な脆弱性や設定ミスを特定することに焦点を当てています。
+#　security-first
+このプロジェクトは、簡易的にwebサイトの安全性を評価するための簡単なソフトです。
 
 ## プロジェクト構成
 - `security1st/`: コアパッケージ
@@ -22,6 +21,10 @@
 - **調査 (Research) -> 戦略 (Strategy) -> 実行 (Execution)** のサイクルに従うこと。
 - 新しいスキャナーモジュールを追加する際は、必ずテストを追加すること。
 - 変更内容は、本番環境に適用する前にローカル環境で検証すること。
-## AIエージェントへの要求
-- 必ず日本語を話すこと。
--
+
+## 審査範囲
+- Strict-Transport-Security
+- Content-Security-Policy
+- X-Content-Type-Options
+- X-Frame-Options
+- X-XSS-Protection
