@@ -1,34 +1,59 @@
 # security-first
-- このプロジェクトは、簡易的にwebサイトの安全性を評価するための簡単なソフトです。
 
-## プロジェクト構成
-- `security1st/`: コアパッケージ
-  - `scanner/`: 各種セキュリティチェック用モジュール
-  - `report/`: 診断レポート生成モジュール
-  - `utils/`: 共通ユーティリティ
-- `run.py`: アプリケーションの実行エントリポイント
+A lightweight tool for evaluating the security posture of websites by inspecting HTTP response headers.
 
-## 主要な指針 (Mandates)
-- **セキュリティ第一:** 脆弱性を導入しないこと。ツールは責任を持って、許可されたターゲットに対してのみ使用すること。
-- **モジュール化:** 各セキュリティチェックは、独立したプラグイン可能なモジュールとして実装すること。
-- **レポート機能:** 診断結果は、JSONやMarkdownなどの形式で、明確かつ実行可能な形式で出力すること。
+## Project Structure
 
-## 技術スタック
-- **言語:** Python 3.x
-- **ライブラリ:** `requests` (HTTPチェック用)
+- `security1st/` - Core package
+  - `scanner/` - Security check modules
+  - `report/` - Report generation
+  - `utils/` - Shared utilities (scoring, assessment)
+- `run.py` - Entry point (CLI and Web UI)
 
-## 開発フロー
-- **調査 (Research) -> 戦略 (Strategy) -> 実行 (Execution)** のサイクルに従うこと。
-- 新しいスキャナーモジュールを追加する際は、必ずテストを追加すること。
-- 変更内容は、本番環境に適用する前にローカル環境で検証すること。
+## Usage
 
-## 審査範囲
-- Strict-Transport-Security
-- Content-Security-Policy
-- X-Content-Type-Options
-- X-Frame-Options
-- X-XSS-Protection
-## 今後の改善案
-- PCのファイル内での診察
-- より高度で複雑な評価方法の実装
-- ヘッダー以外の要素も用いた診察
+```bash
+# CLI mode
+python run.py
+
+# Web UI mode (Flask, port 5001)
+python run.py --web
+```
+
+## Headers Checked
+
+Checks 8 security headers across three categories:
+
+**Critical:** Strict-Transport-Security, Content-Security-Policy, X-Frame-Options
+
+**Recommended:** X-Content-Type-Options, Referrer-Policy
+
+**Modern:** Permissions-Policy, Cross-Origin-Opener-Policy
+
+**Legacy:** X-XSS-Protection
+
+Results are scored with weighted assessment and ranked S through D.
+
+## Output
+
+- Terminal display with score summary and prioritized recommendations
+- JSON report (`security_report.json`)
+
+## Tech Stack
+
+- Python 3.x
+- `requests` for HTTP inspection
+- Flask for Web UI
+
+## Development
+
+- Follow the Research, Strategy, Execution cycle.
+- Add tests when introducing new scanner modules.
+- Verify changes locally before deploying.
+- Use this tool only against authorized targets.
+
+## Future Improvements
+
+- Local file scanning
+- More advanced assessment methods
+- Diagnostics beyond HTTP headers
